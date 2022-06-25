@@ -6,7 +6,7 @@ public class BiDirectionBinaryTreeTest {
 
 	public static void main(String[] args) {
 
-		var bt = createBalancedBinaryTree();
+		var bt = createUnbalancedBinaryTree();
 
 		printBinaryTree(bt.getNode());
 

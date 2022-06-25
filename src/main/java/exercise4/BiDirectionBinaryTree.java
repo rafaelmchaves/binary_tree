@@ -1,5 +1,7 @@
 package exercise4;
 
+import exercise3.Node;
+
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
@@ -43,6 +45,18 @@ public class BiDirectionBinaryTree {
 		return current;
 	}
 
+	private BiDirectionalNode insertBidirectionAfterRebalanced(BiDirectionalNode node2) {
+
+		if(node2.getLeft() == null || node2.getRight() == null) {
+			return node2;
+		}
+
+		insertBidirection(node2, insertBidirectionAfterRebalanced(node2.getLeft()), node2.getLeft().getValue());
+		insertBidirection(node2, insertBidirectionAfterRebalanced(node2.getRight()), node2.getRight().getValue());
+
+		return node2;
+
+	}
 	private void insertBidirection(BiDirectionalNode father, BiDirectionalNode current, int value) {
 		if (father != null && value > father.getValue()) {
 			if (father.getLeft() != null) {
@@ -102,6 +116,8 @@ public class BiDirectionBinaryTree {
 		nodes.sort(Comparator.comparing(BiDirectionalNode::getValue));
 
 		buildTree(nodes, 0, nodes.size() - 1);
+
+		insertBidirectionAfterRebalanced(node);
 
 	}
 
