@@ -50,14 +50,14 @@ public class BinaryTree {
 			return true;
 		}
 
-		HeightCount leftHeighteight = new HeightCount();
-		HeightCount rightHeighteight = new HeightCount();
+		HeightCount leftHeightCount = new HeightCount();
+		HeightCount rightHeightCount = new HeightCount();
 
-		boolean isLeftBalanced = isBalanced(node.getLeft(), leftHeighteight);
-		boolean isRightBalanced = isBalanced(node.getRight(), rightHeighteight);
+		boolean isLeftBalanced = isBalanced(node.getLeft(), leftHeightCount);
+		boolean isRightBalanced = isBalanced(node.getRight(), rightHeightCount);
 
-		long leftHeight = leftHeighteight.getCount();
-		long rightHeight = rightHeighteight.getCount();
+		long leftHeight = leftHeightCount.getCount();
+		long rightHeight = rightHeightCount.getCount();
 
 		heightCount.setCount((Math.max(leftHeight, rightHeight)) + 1L);
 

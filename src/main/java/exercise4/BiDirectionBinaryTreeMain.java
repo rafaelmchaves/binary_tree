@@ -2,7 +2,7 @@ package exercise4;
 
 import java.util.LinkedList;
 
-public class BiDirectionBinaryTreeTest {
+public class BiDirectionBinaryTreeMain {
 
 	public static void main(String[] args) {
 

@@ -8,32 +8,32 @@ public class BiDirectionalNode {
 
 	private BiDirectionalNode right;
 
-	private BiDirectionalNode leftRelative;
+	private BiDirectionalNode leftNeighbor;
 
-	private BiDirectionalNode rightRelative;
+	private BiDirectionalNode rightNeighbor;
 
 	BiDirectionalNode(int value) {
 		this.value = value;
 		this.right = null;
 		this.left = null;
-		this.leftRelative = null;
-		this.rightRelative = null;
+		this.leftNeighbor = null;
+		this.rightNeighbor = null;
 	}
 
-	public BiDirectionalNode getLeftRelative() {
-		return leftRelative;
+	public BiDirectionalNode getLeftNeighbor() {
+		return leftNeighbor;
 	}
 
-	public void setLeftRelative(BiDirectionalNode leftRelative) {
-		this.leftRelative = leftRelative;
+	public void setLeftNeighbor(BiDirectionalNode leftNeighbor) {
+		this.leftNeighbor = leftNeighbor;
 	}
 
-	public BiDirectionalNode getRightRelative() {
-		return rightRelative;
+	public BiDirectionalNode getRightNeighbor() {
+		return rightNeighbor;
 	}
 
-	public void setRightRelative(BiDirectionalNode rightRelative) {
-		this.rightRelative = rightRelative;
+	public void setRightNeighbor(BiDirectionalNode rightNeighbor) {
+		this.rightNeighbor = rightNeighbor;
 	}
 
 	public Integer getValue() {

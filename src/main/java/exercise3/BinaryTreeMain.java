@@ -2,7 +2,7 @@ package exercise3;
 
 import java.util.LinkedList;
 
-public class BinaryTreeTest {
+public class BinaryTreeMain {
 
 	public static void main(String[] args) {
 

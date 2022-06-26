@@ -3,6 +3,7 @@ package exercise4;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
+
 public class BiDirectionBinaryTree {
 
 	public static final int MAX_HEIGHT = 2;
@@ -21,11 +22,11 @@ public class BiDirectionBinaryTree {
 
 	}
 
-	private BiDirectionalNode insert(BiDirectionalNode father, BiDirectionalNode current, int value) {
+	private BiDirectionalNode insert(BiDirectionalNode parent, BiDirectionalNode current, int value) {
 
 		if (current == null) {
 			current = new BiDirectionalNode(value);
-			insertBidirection(father, current, value);
+			insertBidirection(parent, current, value);
 
 			return current;
 		}
@@ -53,33 +54,33 @@ public class BiDirectionBinaryTree {
 		return node2;
 
 	}
-	private void insertBidirection(BiDirectionalNode father, BiDirectionalNode current, int value) {
-		if (father != null && value > father.getValue()) {
-			insertBiDirectionFromTheLeftNode(father, current);
-		} else if (father != null && value < father.getValue()) {
-			insertBidirectionFromTheRightNode(father, current);
+	private void insertBidirection(BiDirectionalNode parent, BiDirectionalNode current, int value) {
+		if (parent != null && value > parent.getValue()) {
+			insertBiDirectionFromTheLeftNode(parent, current);
+		} else if (parent != null && value < parent.getValue()) {
+			insertBidirectionFromTheRightNode(parent, current);
 		}
 	}
 
-	private void insertBiDirectionFromTheLeftNode(BiDirectionalNode father, BiDirectionalNode current) {
-		if (father.getLeft() != null) {
-			current.setLeftRelative(father.getLeft());
-			father.getLeft().setRightRelative(current);
+	private void insertBiDirectionFromTheLeftNode(BiDirectionalNode parent, BiDirectionalNode current) {
+		if (parent.getLeft() != null) {
+			current.setLeftNeighbor(parent.getLeft());
+			parent.getLeft().setRightNeighbor(current);
 		}
-		if (father.getRightRelative() != null && father.getRightRelative().getLeft() != null) {
-			father.getRightRelative().getLeft().setLeftRelative(current);
-			current.setRightRelative(father.getRightRelative().getLeft());
+		if (parent.getRightNeighbor() != null && parent.getRightNeighbor().getLeft() != null) {
+			parent.getRightNeighbor().getLeft().setLeftNeighbor(current);
+			current.setRightNeighbor(parent.getRightNeighbor().getLeft());
 		}
 	}
 
-	private void insertBidirectionFromTheRightNode(BiDirectionalNode father, BiDirectionalNode current) {
-		if(father.getRight() != null) {
-			current.setRightRelative(father.getRight());
-			father.getRight().setLeftRelative(current);
+	private void insertBidirectionFromTheRightNode(BiDirectionalNode parent, BiDirectionalNode current) {
+		if(parent.getRight() != null) {
+			current.setRightNeighbor(parent.getRight());
+			parent.getRight().setLeftNeighbor(current);
 		}
-		if (father.getLeftRelative() != null && father.getLeftRelative().getRight() != null) {
-			father.getLeftRelative().getRight().setRightRelative(current);
-			current.setLeftRelative(father.getLeftRelative().getRight());
+		if (parent.getLeftNeighbor() != null && parent.getLeftNeighbor().getRight() != null) {
+			parent.getLeftNeighbor().getRight().setRightNeighbor(current);
+			current.setLeftNeighbor(parent.getLeftNeighbor().getRight());
 		}
 	}
 
