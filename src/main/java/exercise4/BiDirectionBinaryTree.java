@@ -1,12 +1,8 @@
 package exercise4;
 
-import exercise3.Node;
-
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
-import java.util.Objects;
-
 public class BiDirectionBinaryTree {
 
 	public static final int MAX_HEIGHT = 2;
@@ -59,24 +55,31 @@ public class BiDirectionBinaryTree {
 	}
 	private void insertBidirection(BiDirectionalNode father, BiDirectionalNode current, int value) {
 		if (father != null && value > father.getValue()) {
-			if (father.getLeft() != null) {
-				current.setLeftRelative(father.getLeft());
-				father.getLeft().setRightRelative(current);
-			}
-			if (father.getRightRelative() != null && father.getRightRelative().getLeft() != null) {
-				father.getRightRelative().getLeft().setLeftRelative(current);
-				current.setRightRelative(father.getRightRelative().getLeft());
-			}
-
+			insertBiDirectionFromTheLeftNode(father, current);
 		} else if (father != null && value < father.getValue()) {
-			if(father.getRight() != null) {
-				current.setRightRelative(father.getRight());
-				father.getRight().setLeftRelative(current);
-			}
-			if (father.getLeftRelative() != null && father.getLeftRelative().getRight() != null) {
-				father.getLeftRelative().getRight().setRightRelative(current);
-				current.setLeftRelative(father.getLeftRelative().getRight());
-			}
+			insertBidirectionFromTheRightNode(father, current);
+		}
+	}
+
+	private void insertBiDirectionFromTheLeftNode(BiDirectionalNode father, BiDirectionalNode current) {
+		if (father.getLeft() != null) {
+			current.setLeftRelative(father.getLeft());
+			father.getLeft().setRightRelative(current);
+		}
+		if (father.getRightRelative() != null && father.getRightRelative().getLeft() != null) {
+			father.getRightRelative().getLeft().setLeftRelative(current);
+			current.setRightRelative(father.getRightRelative().getLeft());
+		}
+	}
+
+	private void insertBidirectionFromTheRightNode(BiDirectionalNode father, BiDirectionalNode current) {
+		if(father.getRight() != null) {
+			current.setRightRelative(father.getRight());
+			father.getRight().setLeftRelative(current);
+		}
+		if (father.getLeftRelative() != null && father.getLeftRelative().getRight() != null) {
+			father.getLeftRelative().getRight().setRightRelative(current);
+			current.setLeftRelative(father.getLeftRelative().getRight());
 		}
 	}
 
@@ -140,8 +143,9 @@ public class BiDirectionBinaryTree {
 
 	private void insertTreeToList (BiDirectionalNode node, List<BiDirectionalNode> nodes) {
 
-		if (node == null)
+		if (node == null) {
 			return;
+		}
 
 		nodes.add(node);
 		insertTreeToList(node.getLeft(), nodes);
