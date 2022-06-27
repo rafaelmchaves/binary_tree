@@ -42,18 +42,34 @@ public class BiDirectionBinaryTree {
 		return current;
 	}
 
-	private BiDirectionalNode insertBidirectionAfterRebalanced(BiDirectionalNode node2) {
+	/**
+	 * After the balancing process, it is necessary to recreate the bidirectional pointer of all nodes.
+	 *
+	 * @param bidirectionalNode
+	 * @return
+	 */
+	private BiDirectionalNode insertBidirectionAfterRebalanced(BiDirectionalNode bidirectionalNode) {
 
-		if(node2.getLeft() == null || node2.getRight() == null) {
-			return node2;
+		if(bidirectionalNode.getLeft() == null || bidirectionalNode.getRight() == null) {
+			return bidirectionalNode;
 		}
 
-		insertBidirection(node2, insertBidirectionAfterRebalanced(node2.getLeft()), node2.getLeft().getValue());
-		insertBidirection(node2, insertBidirectionAfterRebalanced(node2.getRight()), node2.getRight().getValue());
+		insertBidirection(bidirectionalNode, insertBidirectionAfterRebalanced(bidirectionalNode.getLeft()), bidirectionalNode.getLeft().getValue());
+		insertBidirection(bidirectionalNode, insertBidirectionAfterRebalanced(bidirectionalNode.getRight()), bidirectionalNode.getRight().getValue());
 
-		return node2;
+		return bidirectionalNode;
 
 	}
+
+	/**
+	 * Inserting bidirection pointers in the current neighbors.
+	 * If the current is the right child node, then we need to connect with the left node if exists.
+	 * We need to check another neighbors from the neighbor children of the parent.
+	 *
+	 * @param parent
+	 * @param current
+	 * @param value
+	 */
 	private void insertBidirection(BiDirectionalNode parent, BiDirectionalNode current, int value) {
 		if (parent != null && value > parent.getValue()) {
 			insertBiDirectionFromTheLeftNode(parent, current);
